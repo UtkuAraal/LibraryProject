@@ -1,0 +1,40 @@
+﻿@model Borrowing
+@{
+}
+
+
+<div class="container">
+  <h2>Kitap Teslim Formu</h2>
+  <form asp-controller="Home" asp-action="CheckIn" asp-route-id="@Model.Id" method="post">
+    <div class="form-group">
+      <label for="kiralayan">Kim Kiraladı:</label>
+      <input type="text" class="form-control" id="kiralayan" value="@Model.NameSurname" disabled>
+    </div>
+    <div class="form-group">
+      <label for="telefon">Telefon Numarası:</label>
+      <input type="tel" class="form-control" id="telefon"  value="@Model.PhoneNumber" disabled>
+    </div>
+    <div class="form-group">
+      <label for="TCKN">TC kimlik Numarası:</label>
+      <input type="tel" class="form-control" id="TCKN"  value="@Model.TCKN" disabled>
+    </div>
+    <div class="form-group">
+      <label for="beklenen" >Beklenen Teslim Tarihi:</label>
+      <input type="date" class="form-control" id="beklenen" value="@Model.ExpectedReturnDate.ToString("yyyy-MM-dd")" disabled>
+    </div>
+    <div class="form-group">
+      <label for="gercek">Gerçek Teslim Tarihi:</label>
+      <input type="date" class="form-control" id="gercek" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+    </div>
+        @if (ViewBag.Penalty != 0)
+        {
+            <div class="form-group">
+                <label for="ceza">Gecikme ücreti:</label>
+                <input type="tel" class="form-control" id="ceza"  value="@ViewBag.Penalty TL" disabled>
+            </div>
+        
+        }
+     <br />
+    <button type="submit" class="btn btn-primary">Kitap Teslim Et</button>
+  </form>
+</div>

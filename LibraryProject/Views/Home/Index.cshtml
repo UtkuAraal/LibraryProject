@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="alert alert-success" role="alert" id="selectedInfo">
+  <h4 class="alert-heading">Seçilen kitap: <span></span></h4>
+  <p class="availability"></p>
+  <hr>
+  <div class="mb-0 button d-flex justify-content-end">
+      <a role="button" id="checkBtn"></a>
+  </div>
+</div>
+
+<input type="text" id="search" class="form-control" placeholder="Kitap Adı Girin...">
+<table id="book-table" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Kitap başlığı</th>
+      <th>ISBN</th>
+      <th>Yayın yılı</th>
+      <th>Fiyat</th>
+      <th>Durumu</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+        @foreach(var book in Model)
+        {
+            <tr>
+                <td name ="@book.Id">@book.Title</td>
+                <td>@book.ISBN</td>
+                <td>@book.Year</td>
+                <td>@book.Price</td>
+                @if (book.isAvailable == true)
+                {
+                    <td>Uygun</td>
+                }
+                else
+                {
+                     <td>Uygun Değil</td>   
+                }
+                <td><a href="/Home/Details/@book.Id" class="btn btn-info" role="button" >Detay</a></td>
+            </tr>
+        }
+
+  </tbody>
+</table>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function(){
+
+            $("#selectedInfo").hide();
+
+            $("#search").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#book-table tbody tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+             });
+
+             $("#book-table tbody tr").on("click", function(){
+                 var elem = $(this)
+                console.log(elem.children().eq(0).text());
+                 $("#book-table tbody tr").removeClass("table-success");
+
+                
+                $(this).addClass("table-success");
+
+                $("#selectedInfo h4 span").text(elem.children().eq(0).text());
+                $(".availability").text(elem.children().eq(4).text());
+                if(elem.children().eq(4).text() == "Uygun"){
+                     
+                         $("#checkBtn")
+                             .attr("href", "/Home/CheckOutForm/" + elem.children().eq(0).attr("name"))
+                             .removeClass()
+                             .addClass("btn btn-warning")
+                             .text("Check Out");
+                         
+                     
+                }else{
+                    
+                         $("#checkBtn")
+                             .attr("href", "/Home/CheckInForm/" + elem.children().eq(0).attr("name"))
+                             .removeClass()
+                             .addClass("btn btn-danger")
+                             .text("Check In");
+                         
+                     
+                }
+
+                $("#selectedInfo").show();
+                
+
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 'slow');
+             });
+
+
+        });
+        
+
+    </script>
+   
+}

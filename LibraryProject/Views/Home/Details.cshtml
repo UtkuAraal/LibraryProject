@@ -1,0 +1,65 @@
+﻿@model Detailsdto
+@{
+}
+
+<div class="container">
+    <h1 class="text-center">Kitap Detayları</h1>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td><strong>Kitap Başlığı:</strong></td>
+                        <td>@Model.Book.Title</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ISBN:</strong></td>
+                        <td>@Model.Book.ISBN</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Yayın Yılı:</strong></td>
+                        <td>@Model.Book.Year</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fiyat:</strong></td>
+                        <td>@Model.Book.Price TL</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Uygunluk Durumu:</strong></td>
+                        @if(@Model.Book.isAvailable){
+                            <td class="text-success">Kitap ödünç almak için uygun</td>
+                        }
+                        else{
+
+                            <td class="text-danger">Kitap ödünç almak için uygun değil !</td>
+                        }
+
+                    </tr>
+                    <tr>
+                        <td><strong>Tarih:</strong></td>
+                        <td>
+                            @if (@Model.CheckOutDate != new DateTime(0001, 1, 1))
+                            {
+                                @Model.CheckOutDate.ToString("yyyy-MM-dd")
+                            }
+                            -
+                            @if (@Model.CheckInDate != new DateTime(0001, 1, 1))
+                            {
+                                @Model.CheckInDate.ToString("yyyy-MM-dd")
+                            }
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kitap Sahibi:</strong></td>
+                        <td>@Model.NameSurname</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-end">
+<a role="button" class="btn btn-primary" href="/Home/Index">Ana sayfaya dön</a>
+</div>
