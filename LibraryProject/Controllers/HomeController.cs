@@ -68,11 +68,12 @@ namespace LibraryProject.Controllers
                 
                 borrowing.BookId = id;
                 _borrowingService.CheckOut(borrowing);
-                
-                
+                TempData["SuccessMessage"] = "Check Out";
+
             }
             catch (Exception ex) {
                 Log.Error("CheckOut sayfasında bir hata meydana geldi!");
+                TempData["ErrorMessage"] = "Check Out";
 
             }
             return RedirectToAction("Index", "Home");
@@ -120,12 +121,13 @@ namespace LibraryProject.Controllers
         public IActionResult CheckIn(int id) {
             try {
                 _borrowingService.CheckIn(id);
-                return RedirectToAction("Index", "Home");
+                TempData["SuccessMessage"] = "Check In";
             }
             catch (Exception ex) {
                 Log.Error("CheckIn sayfasında bir hata meydana geldi!");
-                return RedirectToAction("Index", "Home");
+                TempData["ErrorMessage"] = "Check In";
             }
+            return RedirectToAction("Index", "Home");
         }
 
 

@@ -50,7 +50,34 @@
 </table>
 
 
+
+
 @section scripts{
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+
+            sweetAlert(
+                'Başarılı!',
+                '@TempData["SuccessMessage"] işlemi başarılı!',
+                'success'
+            )
+        </script>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            sweetAlert(
+                'Hata!',
+                '@TempData["ErrorMessage"] işlemi sırasında bir hata meydana geldi!',
+                'error'
+            )
+        </script>
+    }
+
+
+
     <script>
         $(document).ready(function(){
 
