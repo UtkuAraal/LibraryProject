@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
       <label for="gercek">Gerçek Teslim Tarihi:</label>
-      <input type="date" class="form-control" id="gercek" value="@DateTime.Today.ToString("yyyy-MM-dd")">
+      <input type="date" class="form-control" id="gercek" value="@DateTime.Today.ToString("yyyy-MM-dd")" disabled>
     </div>
         @if (ViewBag.Penalty != 0)
         {
