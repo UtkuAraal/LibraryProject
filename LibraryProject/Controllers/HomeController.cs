@@ -94,12 +94,12 @@ namespace LibraryProject.Controllers
                     {
                         TimeSpan delay = DateTime.Today - borrow.ExpectedReturnDate;
                         int delayDays = delay.Days;
-                        int penalty = delayDays * 5; // ceza miktarı hesaplanıyor
-                        ViewBag.Penalty = penalty; // View'da göstermek için ViewBag'e ceza miktarı atanıyor
+                        int penalty = delayDays * 5; 
+                        ViewBag.Penalty = penalty; 
                     }
                     else
                     {
-                        ViewBag.Penalty = 0; // Beklenen tarihten erken teslim edildiyse ceza miktarı sıfır olarak atanıyor
+                        ViewBag.Penalty = 0; 
                     }
 
 
