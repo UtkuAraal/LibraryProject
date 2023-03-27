@@ -97,7 +97,8 @@
                 firstTotal *= 7;
                 secondTotal *= 9
                 var total = firstTotal + secondTotal;
-                if (((total % 10) == tenthDigit) && ((firstDigit + thirdDigit + fifthDigit + seventhDigit + ninthDigit + secondDigit + fourthDigit + sixthDigit + eighthDigit + tenthDigit ) % 10)  ==  eleventhDigit) {
+                
+                if (((total % 10) == tenthDigit) && (((firstDigit + thirdDigit + fifthDigit + seventhDigit + ninthDigit + secondDigit + fourthDigit + sixthDigit + eighthDigit + tenthDigit ) % 10)  ==  eleventhDigit) && (firstDigit != 0) && ((eleventhDigit % 2) != 1)) {
                    
                    return true;
                     
