@@ -92,14 +92,15 @@
                 var ninthDigit = parseInt(value.charAt(8));
                 var tenthDigit = parseInt(value.charAt(9));
                 var eleventhDigit = parseInt(value.charAt(10));
-                var totalSum = (firstDigit + secondDigit + thirdDigit + fourthDigit + fifthDigit + sixthDigit + seventhDigit + eighthDigit + ninthDigit);
-                var tenthDigitResult = totalSum % 10;
-                if (((tenthDigitResult == 0 || tenthDigitResult == 1) && tenthDigit == 0) || (tenthDigit == (10 - tenthDigitResult))) {
-                    var totalSum2 = (firstDigit + secondDigit + thirdDigit + fourthDigit + fifthDigit + sixthDigit + seventhDigit + eighthDigit + ninthDigit + tenthDigit);
-                    var eleventhDigitResult = totalSum2 % 10;
-                    if (eleventhDigit == eleventhDigitResult) {
-                        return true;
-                    }
+                var firstTotal = firstDigit + thirdDigit + fifthDigit + seventhDigit + ninthDigit;
+                var secondTotal = secondDigit + fourthDigit + sixthDigit + eighthDigit;
+                firstTotal *= 7;
+                secondTotal *= 9
+                var total = firstTotal + secondTotal;
+                if (((total % 10) == tenthDigit) && ((firstDigit + thirdDigit + fifthDigit + seventhDigit + ninthDigit + secondDigit + fourthDigit + sixthDigit + eighthDigit + tenthDigit ) % 10)  ==  eleventhDigit) {
+                   
+                   return true;
+                    
                 }
                 return false;
                 }, "Lütfen geçerli bir TC Kimlik numarası girin");
